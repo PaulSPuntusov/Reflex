@@ -12,7 +12,7 @@ public class Main {
 
     }
     public static void classFieldTerminator(Object object) throws IllegalAccessException {
-        for(Field declaredField : object.getClass().getDeclaredFields()){
+        for(Field declaredField : object.getClass().getFields()){
             declaredField.set(object,null);
 
         }
