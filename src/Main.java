@@ -8,13 +8,15 @@ public class Main {
         Class catClass = cat.getClass();
         System.out.println("до Терминатора "+Arrays.toString(catClass.getDeclaredFields()));
         classFieldTerminator(cat);
-        System.out.println("После Терминатора "+Arrays.toString(catClass.getDeclaredFields()));
+        System.out.println("После Терминатора "+cat);
 
     }
     public static void classFieldTerminator(Object object) throws IllegalAccessException {
-        for(Field declaredField : object.getClass().getFields()){
-            declaredField.set(object,null);
-
+        for(Field declaredField : object.getClass().getDeclaredFields()){
+            declaredField.setAccessible(true);
+            if(!declaredField.getType().isPrimitive()){
+                declaredField.set(object,null);
+            }
         }
     }
 
